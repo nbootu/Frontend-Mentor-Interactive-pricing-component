@@ -1,0 +1,411 @@
+/* CSS variables */
+:root {
+  /* Fonts */
+  --font: 'Manrope', system-ui, sans-serif;
+  --font-size-1: 0.9375rem;
+  --font-weight-1: 600;
+  --font-weight-2: 800;
+  --font-lineheight-1: 1.6;
+  --font-lineheight-2: 1.3;
+  --letter-spacing-1: 2px;
+
+  /* Colors */
+  --slider-bar: hsl(174, 77%, 80%);
+  --slider-bg: hsl(174, 86%, 45%);
+  --discount-bg: hsl(14, 92%, 95%);
+  --discount-text: hsl(15, 100%, 70%);
+  --cta-text: hsl(226, 100%, 87%);
+
+  --pricing-bg: hsl(0, 0%, 100%);
+  --site-bg: hsl(230, 100%, 99%);
+  --slider-empty-bar: hsl(224, 65%, 95%);
+  --toggle-bg: hsl(223, 50%, 87%);
+  --text: hsl(225, 20%, 60%);
+  --cta-bg: hsl(227, 35%, 25%);
+
+  /* Sizes */
+  --size-1: 1rem;
+  --size-2: 1.5rem;
+  --size-3: 2rem;
+  --size-4: 3rem;
+  --size-5: 4rem;
+  --size-6: 8rem;
+
+  /* Radius */
+  --radius-1: 0.5rem;
+  --radius-round: 1e5px;
+
+  /* Shadows */
+  --card-shadow: 1.4px 1.4px 2.2px rgba(0, 0, 0, 0.006),
+    3.3px 3.3px 5.3px rgba(0, 0, 0, 0.008), 6.3px 6.3px 10px rgba(0, 0, 0, 0.01),
+    11.2px 11.2px 17.9px rgba(0, 0, 0, 0.012),
+    20.9px 20.9px 33.4px rgba(0, 0, 0, 0.014),
+    50px 50px 80px rgba(0, 0, 0, 0.02);
+  --thumb-shadow: 0px 15px 30px hsla(174, 100%, 55%, 1);
+}
+
+/* Base */
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+}
+
+html {
+  block-size: 100%;
+}
+
+body {
+  min-block-size: 100%;
+  font-family: var(--font);
+  font-size: var(--font-size-1);
+  font-weight: var(--font-weight-1);
+  line-height: var(--font-lineheight-1);
+  color: var(--text);
+  background-color: var(--site-bg);
+  background-image: url('../images/pattern-circles.svg'),
+    url('../images/bg-pattern.svg');
+  background-repeat: no-repeat;
+  background-position: center 10%, top center;
+  background-size: auto, 100% 50%;
+}
+
+img,
+svg {
+  display: block;
+  max-inline-size: 100%;
+  block-size: auto;
+}
+
+h1 {
+  margin: 0;
+  line-height: var(--font-lineheight-2);
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  cursor: pointer;
+  touch-action: manipulation;
+  margin: var(--size-0);
+  padding: var(--size-1);
+  font-size: 0.9rem;
+  text-underline-offset: 1px;
+}
+
+/* Utilities */
+.dark-text {
+  color: var(--cta-bg);
+}
+
+.uppercase {
+  text-transform: uppercase;
+}
+
+/* Components */
+.line {
+  block-size: 1px;
+  inline-size: calc(100% + var(--size-4));
+  background: var(--slider-empty-bar);
+}
+
+.price {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--size-1);
+  font-size: 1.25rem;
+}
+
+.price > span {
+  font-size: var(--size-4);
+  font-weight: var(--font-weight-2);
+}
+
+.badge {
+  padding-block: 0.25ch;
+  padding-inline: 1.5ch;
+  font-weight: var(--font-weight-2);
+  color: var(--discount-text);
+  background-color: hsla(15, 100%, 70%, 0.2);
+  border-radius: var(--radius-round);
+}
+
+/* Custom Range Slider */
+input[type='range'] {
+  /* style setting variables */
+  --track-height: 1rem;
+  --track-fill: 50%;
+  --thumb-size: 3rem;
+  --thumb-offset: -1rem;
+  --thumb-highlight-size: 0px;
+
+  appearance: none;
+  display: block;
+  inline-size: 100%;
+  margin: 1ex 0;
+  background: transparent;
+  outline-offset: 5px;
+}
+
+input[type='range']::-webkit-slider-runnable-track {
+  appearance: none;
+  block-size: var(--track-height);
+  border-radius: 5ex;
+  background: linear-gradient(
+      to right,
+      transparent var(--track-fill),
+      var(--slider-empty-bar) 0%
+    ),
+    var(--slider-bar) fixed;
+}
+
+input[type='range']::-moz-range-track {
+  appearance: none;
+  block-size: var(--track-height);
+  border-radius: 5ex;
+  background: linear-gradient(
+      to right,
+      transparent var(--track-fill),
+      var(--slider-empty-bar) 0%
+    ),
+    var(--slider-bar) fixed;
+}
+
+input[type='range']::-webkit-slider-thumb {
+  appearance: none;
+  cursor: ew-resize;
+  border: none;
+  block-size: var(--thumb-size);
+  inline-size: var(--thumb-size);
+  margin-top: var(--thumb-offset);
+  border-radius: var(--radius-round);
+  background: var(--slider-bg) url('../images/icon-slider.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  box-shadow: var(--thumb-shadow);
+}
+
+input[type='range']::-moz-range-thumb {
+  appearance: none;
+  cursor: ew-resize;
+  border: none;
+  block-size: var(--thumb-size);
+  inline-size: var(--thumb-size);
+  margin-top: var(--thumb-offset);
+  border-radius: var(--radius-round);
+  background: var(--slider-bg) url('../images/icon-slider.svg');
+  background-repeat: no-repeat;
+  background-position: center center;
+  box-shadow: var(--thumb-shadow);
+}
+
+/* Custom Checkbox as Switch */
+.bill-switcher {
+  --thumb-size: var(--size-2);
+  --thumb-color: var(--pricing-bg);
+  --track-size: calc(var(--thumb-size) * 2.25);
+  --track-padding: 6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1ch;
+  cursor: pointer;
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.bill-switcher > input {
+  --thumb-position: 0%;
+
+  box-sizing: content-box;
+  display: grid;
+  align-items: center;
+  grid: [track] 1fr / [track] 1fr;
+  inline-size: var(--track-size);
+  block-size: var(--thumb-size);
+  padding: var(--track-padding);
+  flex-shrink: 0;
+  appearance: none;
+  pointer-events: none;
+  outline-offset: 5px;
+  background-color: var(--toggle-bg);
+  border: none;
+  border-radius: var(--radius-round);
+  transition: background-color 300ms ease-in-out;
+}
+
+.bill-switcher:hover > input,
+.bill-switcher:focus-within > input {
+  background-color: var(--slider-bg);
+}
+
+.bill-switcher > input::before {
+  content: '';
+  cursor: pointer;
+  pointer-events: auto;
+  grid-area: track;
+  inline-size: var(--thumb-size);
+  block-size: var(--thumb-size);
+  background: var(--thumb-color);
+  border-radius: var(--radius-round);
+  transform: translateX(var(--thumb-position));
+  transition: transform 300ms ease-in-out;
+}
+
+.bill-switcher > input:checked {
+  --thumb-position: calc(var(--track-size) - 100%);
+}
+
+button {
+  cursor: pointer;
+  padding-inline: 10ch;
+  padding-block: 2.5ch;
+  font-family: inherit;
+  font-weight: var(--font-weight-2);
+  color: var(--cta-text);
+  border: none;
+  border-radius: var(--radius-round);
+  background-color: var(--cta-bg);
+  outline-offset: 5px;
+  transition: color 300ms ease-in-out;
+}
+
+button:hover,
+button:focus-within {
+  color: var(--pricing-bg);
+}
+
+/* Header */
+header {
+  display: grid;
+  place-items: center;
+  margin-block: var(--size-6);
+  margin-inline: auto;
+  padding-inline: var(--size-1);
+  text-align: center;
+}
+
+header > p {
+  max-inline-size: 22ch;
+  margin-block: var(--size-1);
+}
+
+/* Main */
+main {
+  display: grid;
+  place-items: center;
+  gap: var(--size-4);
+  min-inline-size: 350px;
+  max-inline-size: 40rem;
+  margin-inline: var(--size-2);
+  padding-inline: var(--size-2);
+  padding-block: var(--size-4);
+  background-color: var(--pricing-bg);
+  border-radius: var(--radius-1);
+  box-shadow: var(--card-shadow);
+  text-align: center;
+}
+
+.pageviews {
+  letter-spacing: var(--letter-spacing-1);
+  font-weight: var(--font-weight-2);
+}
+
+main > div {
+  display: grid;
+  gap: var(--size-4);
+}
+
+.billing {
+  display: flex;
+  align-items: center;
+  gap: 1ch;
+  transform: translateX(34px);
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--size-1);
+  margin: 0;
+  padding: 0;
+}
+
+li {
+  padding-inline-start: 2ch;
+}
+
+li::marker {
+  content: url('../images/icon-check.svg');
+}
+
+.discount {
+  display: none;
+}
+
+@media screen and (min-width: 700px) {
+  main {
+    margin-inline: auto;
+  }
+}
+
+@media screen and (min-width: 1440px) {
+  header > p {
+    max-inline-size: initial;
+  }
+
+  main {
+    max-inline-size: 50rem;
+  }
+
+  main > div {
+    inline-size: 90%;
+  }
+
+  main > div:first-child {
+    align-items: center;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  main > div:first-child > p {
+    text-align: left;
+  }
+
+  .price {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    justify-content: flex-end;
+  }
+
+  input[type='range'],
+  .billing {
+    grid-column: 1 / span 2;
+  }
+
+  .billing {
+    justify-content: center;
+    transform: translateX(65px);
+  }
+
+  .minus {
+    display: none;
+  }
+
+  .discount {
+    display: initial;
+  }
+
+  main > div:last-child {
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+  }
+
+  ul {
+    align-items: flex-start;
+  }
+}
